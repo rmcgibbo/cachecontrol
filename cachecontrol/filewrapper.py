@@ -45,7 +45,7 @@ class CallbackFileWrapper(object):
         # TODO: Add some logging here...
         return False
 
-    def close(self):
+    def _close(self):
         if self.__callback:
             self.__callback(self.__buf.getvalue())
 
@@ -60,7 +60,7 @@ class CallbackFileWrapper(object):
         data = self.__fp.read(amt)
         self.__buf.write(data)
         if self.__is_fp_closed():
-            self.close()
+            self._close()
 
         return data
 
@@ -73,6 +73,6 @@ class CallbackFileWrapper(object):
 
         self.__buf.write(data)
         if self.__is_fp_closed():
-            self.close()
+            self._close()
 
         return data

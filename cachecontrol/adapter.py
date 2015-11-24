@@ -103,7 +103,7 @@ class CacheControlAdapter(HTTPAdapter):
                     def _update_chunk_length(self):
                         original_update_chunk_length()
                         if self.chunk_left == 0:
-                            self.close()
+                            self._fp._close()
                     response._update_chunk_length = types.MethodType(_update_chunk_length, response)
 
 
